@@ -77,7 +77,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.js', '.json', '.jsx', ''],
+    extensions: ['.js', '.json', '.jsx', '.scss', ''],
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -116,7 +116,14 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
+        exclude: /(node_modules)\/react-toolbox/,
         loader: 'style!css!postcss'
+      },
+      //Add React Toolbox scss support
+      {
+        test: /\.scss$/,
+        include: /(node_modules)\/react-toolbox/,
+        loader: 'style!css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass?sourceMap'
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
